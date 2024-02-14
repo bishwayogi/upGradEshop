@@ -17,19 +17,18 @@ const OrderDtls = () => {
   const { productItem } = useContext(ProdContext);
   const navigate = useNavigate();
   const steps = ["Item", "Select Address", "Confirm Order"];
-  const handleplaceOrder = () => {
-    handleClick();
-    setTimeout(navigate("/"),"200000");    
-
+  const handleplaceOrder = () => {  
+    handleClick();      
   };
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
-    setOpen(true);
+    setOpen(true);   
   };
 
   const handleClose = (event) => {
     setOpen(false);
+    setTimeout(navigate("/"),"200000"); 
   };
 
   return (
@@ -72,8 +71,10 @@ const OrderDtls = () => {
           severity="success"
           variant="filled"
           sx={{ width: '100%' }}
+          vertical= 'top'
+          horizontal= 'right'
         >
-          This is a success Alert inside a Snackbar!
+          Order is a Successfully Placed!
         </Alert>
       </Snackbar>
     </Box>

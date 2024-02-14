@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Box, ButtonGroup, IconButton } from "@mui/material";
+import { Alert, Box, ButtonGroup, IconButton, Snackbar } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 import "./Productslist.css";
 import { useNavigate } from "react-router-dom";
@@ -21,9 +21,30 @@ const Product = (props) => {
       setIsAdmin(true);
     }
   });
-  const hendleBuyProd = () => {
+  const handleBuyProd = () => {
     getProduct(props.prod);
     navigate("/ProductSummary");
+  };
+
+  const handleProdEdit=()=>{
+    navigate("/AddProducts");
+  }
+
+  const handleProdDelete=()=>{
+    if(window.confirm("Are you sure wants to delete the product?")){
+      handleClick();
+    }
+  }
+
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);   
+  };
+
+  const handleClose = (event) => {
+    setOpen(false);
+    navigate("/"); 
   };
 
   const path = "";
@@ -58,7 +79,7 @@ const Product = (props) => {
               size="small"
               variant="contained"
               sx={{ bgcolor: "#3f51b5" }}
-              onClick={hendleBuyProd}
+              onClick={handleBuyProd}
             >
               Buy
             </Button>
@@ -67,10 +88,10 @@ const Product = (props) => {
                 aria-label="outlined primary button group"
                 sx={{ margin: "auto", marginRight: 0, float: "right" }}
               >
-                <IconButton>
+                <IconButton onClick={handleProdEdit}>
                   <Edit />
                 </IconButton>
-                <IconButton>
+                <IconButton onClick={handleProdDelete}>
                   <Delete />
                 </IconButton>
               </ButtonGroup>
@@ -78,6 +99,18 @@ const Product = (props) => {
           </div>
         </CardActions>
       </Card>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+          vertical= 'top'
+          horizontal= 'right'
+        >
+          Order is a Successfully Placed!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
