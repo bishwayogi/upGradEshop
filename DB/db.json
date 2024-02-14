@@ -1,0 +1,13 @@
+{
+  "Users": [
+  ],
+  "Auth": [
+  ],
+  "Product":[
+    {"productid":1,"prodName":"Apple iPhone 15","catagory":"electronic","Description":"Apple iPhone 15 mobile was launched on 12th September 2023. The phone comes with a 60 Hz refresh rate 6.10-inch touchscreen display offering a resolution of 1179x2556 pixels at a pixel density of 460 pixels per inch (ppi). Apple iPhone 15 is powered by a hexa-core Apple A16 Bionic processor. It comes with 6GB of RAM","price":100000,"uploadDate":"","imgUrl":""},
+    {"productid":2,"prodName":"Samsung 55 Inches Crystal Vision 4K","catagory":"electronic","Description":"4K Ultra HD (3840 x 2160) |Refresh Rate : 50 Hertz, 3 HDMI ports to connect set top box | 1 USB ports to connect hard drives or other USB devices |Wi-fi | Bluetooth, 20W Output- 2CH | Powerful Speakers with Q-Symphony | Multiroom Link | Bluetooth Audio | Dual Audio Support (Bluetooth) | Buds Auto Switch, Pur Color | One Billion Color | HLG (Hybrid Log Gamma) | Contrast Enhancer | Picture Clarity | Film Mode | Filmmaker Mode","price":64000,"uploadDate":"","imgUrl":""},
+    {"productid":3,"prodName":"Van Heusen Men T-Shirt","catagory":"apparel","Description":"The t-shirt is framed with a Crew Neck Short Sleeves: The t-shirt is designed with short sleeves.Zipper Detail On Chest: The zipper detail adds a contrasting flair to the t-shirt. 100% Super Combed Cotton: The super combed cotton construction feels super soft against the skin, making the t-shirt wearable for longer hours without any discomfort.Super Soft: The fabric is extremely soft and comfortable, keeping you at ease for hours.","price":50000,"uploadDate":"","imgUrl":""},
+    {"productid":4,"prodName":"Vivo V29 5G","catagory":"electronic","Description":"Explore an exciting range of features on this ultra slim smartphone that features a 3D curved display. Available with smart aura light, this phone provides bright light even in low light environments. The 50 MP front camera with improved Field of View and Auto Focus (AF) allows you to capture stunning selfies like never before. Designed with the inspiration of top Indian wedding photographers, this phone lets you capture impressive wedding portraits that you can instantly post on social media. Available with a 80 W fast charge, you can boost up the battery from 1% to 50% in just 18 minutes. Also packed with a 50 MP OIS night camera, you can effortlessly click beautiful moonlight pic","price":32999,"uploadDate":"","imgUrl":""},
+    {"productid":5,"prodName":"NIVEA Men Cream","catagory":"personalcare","Description":"NIVEA Men Crème, Dark Spot Reduction, Non Greasy Moisturizer, Cream with UV Protect, 75 ml & Nivea Deep Impact Freshness Deodorant for Men, 150 milliliters","price":32999,"uploadDate":"","imgUrl":""}
+ ]
+}

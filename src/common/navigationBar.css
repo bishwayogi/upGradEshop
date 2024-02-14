@@ -1,0 +1,43 @@
+header{
+    height: 50px;
+}
+
+.btn{
+    margin: 10px;
+    transform: scaleY(1.0);
+    height: 30px;
+}
+
+.btn:hover{
+background-color: #a8204f !important;
+}
+
+.css-8t8ref-MuiToolbar-root{
+    min-height:48px !important;
+}
+
+search{
+    align-items: center;
+}
+
+.title{
+    margin:2px;
+    margin-right: 20px;
+    font-family:"Roboto","Helvetica","Arial",sans-serif;
+    font-weight:500;
+    font-size:1.05rem;
+    line-height:1.6;
+    letter-spacing:0.0075em;
+    width: 35%;
+    color: white;
+    text-decoration: none;
+}
+
+.login{    margin: auto;
+    margin-right: 0;
+
+}
+
+.serch{
+    width: 100%;
+}
