@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Alert, Box, ButtonGroup, IconButton, Snackbar } from "@mui/material";
+import { Alert, Box, ButtonGroup, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Snackbar } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 import "./Productslist.css";
 import { useNavigate } from "react-router-dom";
@@ -27,25 +27,38 @@ const Product = (props) => {
   };
 
   const handleProdEdit=()=>{
-    navigate("/AddProducts");
+    navigate("/AddProducts",{state:{title:'Modify'}});
   }
 
   const handleProdDelete=()=>{
-    if(window.confirm("Are you sure wants to delete the product?")){
-      handleClick();
-    }
+    // if(window.confirm("Are you sure wants to delete the product?")){
+    //   handleClick();
+    // }
+    handleClick();
   }
 
   const [open, setOpen] = useState(false);
+  const [openmsg, setopenmsg] = useState(false);
 
   const handleClick = () => {
     setOpen(true);   
   };
 
-  const handleClose = (event) => {
+  const handleOk = (event) => {
     setOpen(false);
+    setopenmsg(true);
+  };
+
+  const handleCancel = (event) => {
+    setOpen(false);
+  };
+
+  const handleFinalMsg = (event) => {
+    setopenmsg(false);
     navigate("/"); 
   };
+
+  
 
   const path = "";
   return (
@@ -99,18 +112,42 @@ const Product = (props) => {
           </div>
         </CardActions>
       </Card>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={openmsg} autoHideDuration={6000} onClose={handleFinalMsg}>
         <Alert
-          onClose={handleClose}
+          onClose={handleFinalMsg}
           severity="success"
           variant="filled"
-          sx={{ width: '100%' }}
-          vertical= 'top'
-          horizontal= 'right'
+          sx={{ width: '100%'}}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         >
-          Order is a Successfully Placed!
+          Product is deleted Successfully!
         </Alert>
       </Snackbar>
+
+      <Dialog
+        open={open}
+        onClose={handleCancel}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+         Confirm deletion of product!
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          Are you sure wants to delete the product?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+        <Button onClick={handleOk} autoFocus variant="contained"
+                color="primary">
+            ok
+          </Button>
+          <Button variant='outlined' onClick={handleCancel}>Cancel</Button>
+         
+        </DialogActions>
+      </Dialog>
+      
     </Box>
   );
 };

@@ -21,7 +21,7 @@ const handleSignup = (e) => {
     const validationErrors = validateForm();
     if (validationErrors.length === 0) {
       console.log("Signup successful!");
-      navigate("/Home"); 
+      navigate("/Login"); 
     } else {
       setErrors(validationErrors);
     }

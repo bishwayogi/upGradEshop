@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Button, TextField, Typography } from "@mui/material";
+import { Alert, Button, Snackbar, TextField, Typography } from "@mui/material";
 import "../../assets/Style/style.css";
 import logo from "../../assets/Image/login.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
-const AddProducts = (Props) => {
+const AddProducts = () => {
+  const location = useLocation();
+  const title=(location.state)!==null?location.state.title:"Add";
+
   const navigate = useNavigate();
   const [Name, setName] = useState("");
   const [catagory, setcatagory] = useState("");
@@ -22,7 +25,7 @@ const AddProducts = (Props) => {
     const validationErrors = validateForm();
     if (validationErrors.length === 0) {
       console.log("Saved successful!");
-      navigate("/Home");
+      setopenmsg(false);
     } else {
       setErrors(validationErrors);
     }
@@ -47,8 +50,16 @@ const AddProducts = (Props) => {
   };
 
   const handleOnChange=(e)=>{
-	setcatagory(e.currentTarget.value);
+	   setcatagory(e.currentTarget.value);
   }
+
+
+  const [openmsg, setopenmsg] = useState(false);
+
+  const handleFinalMsg = (event) => {
+    setopenmsg(false);
+    navigate("/"); 
+  };
 
   return (
     <Grid2
@@ -63,7 +74,7 @@ const AddProducts = (Props) => {
           component="div"
           sx={{ flexGrow: 1, textShadow: 1 }}
         >
-          Add Product
+          {title}
         </Typography>
         <div className="signup-body">
           <form onSubmit={handleSaveProduct}>
@@ -144,12 +155,23 @@ const AddProducts = (Props) => {
                 fullWidth
                 sx={{ bgcolor: "#3f51b5" }}
               >
-                Save
+                 {(location.state)!==null?location.state.title:"Save"} Product
               </Button>
             </div>
           </form>
         </div>
       </div>
+      <Snackbar open={openmsg} autoHideDuration={6000} onClose={handleFinalMsg}>
+        <Alert
+          onClose={handleFinalMsg}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%'}}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        >
+          Product {Name} is {(location.state)!==null?"Modified":"Saved"} Successfully!
+        </Alert>
+      </Snackbar>
     </Grid2>
   );
 };

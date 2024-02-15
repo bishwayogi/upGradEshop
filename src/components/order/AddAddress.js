@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "../../assets/Style/style.css";
+import "./Order.css";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { AuthContext } from "../../common/AuthContext";
@@ -37,7 +37,7 @@ const AddAddress = (props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <div className="signup">
+        <div className="Order">
           <Typography
             variant="h5"
             component="div"

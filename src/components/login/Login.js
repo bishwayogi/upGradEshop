@@ -11,7 +11,7 @@ const Login = () => {
   const [Username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
-  const { isLoggedIn, isAdmin, login,address } = useContext(AuthContext);
+  const { isLoggedIn, isAdmin, login,setAddress } = useContext(AuthContext);
 
   const loginData = [
     {
@@ -81,11 +81,15 @@ const Login = () => {
       const flag = loginData.filter(function (e) {
         return (e.username === Username && e.password === password)
       });
-      console.log(flagAdmin.length);
+
+      loginData.map((e)=>{
+        (e.username === Username && e.password === password)?setAddress(e.address):setAddress([]);     
+      });
+      //console.log(flagAdmin.length);
       if (flagAdmin.length === 1) {
         localStorage.setItem("isAdmin", true);
         localStorage.setItem("isLogin", true);
-        login(true, true,address);
+        login(true, true);
         navigate("/ProductsList");
       } else {
         if (flag.length === 1) {
