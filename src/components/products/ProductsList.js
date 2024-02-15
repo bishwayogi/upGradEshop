@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "@mui/system/styled";
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
@@ -6,11 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Product from "./Product";
 
+
 const Item = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
 }));
+
+
 const ProductsList = () => {
+
   const Products = [
     {
       productid: 1,
@@ -21,6 +25,8 @@ const ProductsList = () => {
       price: 100000,
       uploadDate: "",
       imgUrl: require("../../assets/Image/Apple15.jpg"),
+      Quantity:5,
+      Manufacturer:"Apple",
     },
     {
       productid: 2,
@@ -31,6 +37,8 @@ const ProductsList = () => {
       price: 64000,
       uploadDate: "",
       imgUrl: require("../../assets/Image/SamsungQled.jpg"),
+      Quantity:10,
+      Manufacturer:"Samsung",
     },
     {
       productid: 3,
@@ -41,6 +49,8 @@ const ProductsList = () => {
       price: 50000,
       uploadDate: "",
       imgUrl: require("../../assets/Image/Vtshirt.jpg"),
+      Quantity:15,
+      Manufacturer:"Van Heusen",
     },
     {
       productid: 4,
@@ -51,6 +61,8 @@ const ProductsList = () => {
       price: 32999,
       uploadDate: "",
       imgUrl: require("../../assets/Image/VivoPhone.jpg"),
+      Quantity:1,
+      Manufacturer:"Vivo",
     },
     {
       productid: 5,
@@ -61,6 +73,8 @@ const ProductsList = () => {
       price: 750,
       uploadDate: "",
       imgUrl: require("../../assets/Image/NIVEAMenCream750.jpg"),
+      Quantity:70,
+      Manufacturer:"NIVEA",
     },
   ];
   const navigate = useNavigate();

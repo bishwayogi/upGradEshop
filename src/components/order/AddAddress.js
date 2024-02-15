@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddAddress = (props) => {
   const { address,setAddress } = useContext(AuthContext);
+  
   const [name, setName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [street, setStreet] = useState("");

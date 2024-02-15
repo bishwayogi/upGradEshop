@@ -13,7 +13,7 @@ import { ProdContext } from "../../common/ProductContext";
 
 const Product = (props) => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const {productItem,getProduct } = useContext(ProdContext);
+  const {getProduct } = useContext(ProdContext);
   const navigate = useNavigate();
   useEffect(() => {
     let flagisadmin = localStorage.getItem("isAdmin");
@@ -27,6 +27,7 @@ const Product = (props) => {
   };
 
   const handleProdEdit=()=>{
+    getProduct(props.prod);
     navigate("/AddProducts",{state:{title:'Modify'}});
   }
 

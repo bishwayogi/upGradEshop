@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Alert, Button, Snackbar, TextField, Typography } from "@mui/material";
 import "../../assets/Style/style.css";
 import logo from "../../assets/Image/login.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import { ProdContext } from "../../common/ProductContext";
 
 const AddProducts = () => {
   const location = useLocation();
@@ -12,12 +13,11 @@ const AddProducts = () => {
   const navigate = useNavigate();
   const [Name, setName] = useState("");
   const [catagory, setcatagory] = useState("");
-  const [Manufaturer, setManufaturer] = useState("");
+  const [Manufacturer, setManufacturer] = useState("");
   const [Quantity, setQuantity] = useState("");
   const [price, setprice] = useState("");
   const [imgUrl, setimgUrl] = useState("");
   const [Description, setDescription] = useState("");
-
   const [errors, setErrors] = useState({});
 
   const handleSaveProduct = (e) => {
@@ -25,19 +25,42 @@ const AddProducts = () => {
     const validationErrors = validateForm();
     if (validationErrors.length === 0) {
       console.log("Saved successful!");
-      setopenmsg(false);
+      setopenmsg(true);
     } else {
       setErrors(validationErrors);
     }
   };
+
+  const {productItem } = useContext(ProdContext);
+  useEffect(()=>{
+    console.log(location.state);
+    if(productItem!==null && location.state!==null){
+      setName(productItem.prodName);
+      setcatagory(productItem.catagory);
+      setimgUrl(productItem.imgUrl);
+      setprice(productItem.price);
+      setDescription(productItem.Description);
+      setManufacturer(productItem.Manufacturer);
+      setQuantity(productItem.Quantity);
+    }else{
+      setName("");
+      setcatagory("");
+      setimgUrl("");
+      setprice("");
+      setDescription("");
+      setManufacturer("");
+      setQuantity("");
+    }
+
+  })
 
   const validateForm = () => {
     const errors = {};
     if (!Name) {
       errors.Name = "Name is required";
     }
-    if (!Manufaturer) {
-      errors.Manufaturer = "Manufaturer is required";
+    if (!Manufacturer) {
+      errors.Manufacturer = "Manufacturer is required";
     }
     if (!catagory) {
       errors.catagory = "Catagory is required";
@@ -74,7 +97,7 @@ const AddProducts = () => {
           component="div"
           sx={{ flexGrow: 1, textShadow: 1 }}
         >
-          {title}
+          {title} Product
         </Typography>
         <div className="signup-body">
           <form onSubmit={handleSaveProduct}>
@@ -104,13 +127,13 @@ const AddProducts = () => {
                 <option value={"PersonalCare"}>Personal Care</option>
               </select>
               <TextField
-                label="Manufaturer *"
+                label="Manufacturer *"
                 variant="outlined"
                 margin="normal"
                 fullWidth
                 size="small"
-                value={Manufaturer}
-                onChange={(e) => setManufaturer(e.target.value)}
+                value={Manufacturer}
+                onChange={(e) => setManufacturer(e.target.value)}
               />
               <TextField
                 label="Available Item *"
@@ -136,6 +159,9 @@ const AddProducts = () => {
                 margin="normal"
                 fullWidth
                 size="small"
+                InputProps={{
+                  readOnly: (location.state)!==null?true:false,
+                }}
                 value={imgUrl}
                 onChange={(e) => setimgUrl(e.target.value)}
               />

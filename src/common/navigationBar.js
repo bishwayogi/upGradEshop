@@ -90,6 +90,10 @@ const NavigationBar = () => {
     navigate("/login");
   };
 
+  const handleAddProd=()=>{
+    navigate("/AddProducts",{state:null});
+  }
+
   return (
     <div className="header">
       <AppBar position="static" sx={{ bgcolor: "#3f51b5" }}>
@@ -196,7 +200,7 @@ const NavigationBar = () => {
                     Home
                   </Link>
                   {isAdmin && (
-                    <Link className="title" to={"/AddProducts"}>
+                    <Link className="title" onClick={handleAddProd}>
                       AddProduct
                     </Link>
                   )}
