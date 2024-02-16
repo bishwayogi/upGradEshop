@@ -3,18 +3,23 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import React, { useContext, useState } from "react";
 import './Order.css';
 import { ProdContext } from "../../common/ProductContext";
-import { AuthContext } from "../../common/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const ProductSummary = () => {
 
  // const { prodName,imgUrl, catagory,Description,Price } = route.params;
-  const [totalPrice,settotalPrice]=useState(0);
   const [totalQuentity,settotalQuentity]=useState(1);
-  const {productItem} = useContext(ProdContext);
+  const {productItem,getorderdDtl} = useContext(ProdContext);
   const navigate = useNavigate();
 
-  const handleplaceOrder=()=>{   
+  const handleplaceOrder=()=>{ 
+    getorderdDtl({
+      prodName:productItem.prodName,
+      qty:totalQuentity,
+      category:productItem.catagory,
+      desc:productItem.Description ,
+      price:totalQuentity * productItem.price    
+    });  
     navigate("/Order");
   }
   return (

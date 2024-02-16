@@ -1,13 +1,13 @@
 import { Box, Button, Grid, Step, StepLabel, Stepper } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import React, { useContext } from "react";
-import { AuthContext } from "../../common/AuthContext";
 import AddAddress from "./AddAddress";
+import { useNavigate } from "react-router-dom";
 
 
 const Order = () => {
   const steps = ["Item", "Select Address", "Confirm Order"];
-
+  const navigate = useNavigate();
   
   return (
     <Box sx={{ width: "90%", margin: "auto", marginTop: 10 }}>
@@ -54,6 +54,7 @@ const Order = () => {
 					variant="contained"
 					color="primary"
 					sx={{bgcolor:"#3f51b5"}}
+          onClick={()=>{navigate("/OrderDtls")}}
 				>
 					Next
 				</Button>

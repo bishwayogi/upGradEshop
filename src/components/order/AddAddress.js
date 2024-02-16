@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 import "./Order.css";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { AuthContext } from "../../common/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { ProdContext } from "../../common/ProductContext";
 
 const AddAddress = (props) => {
-  const { address,setAddress } = useContext(AuthContext);
+  const { delAddress,getdelAddress } = useContext(ProdContext);
   
   const [name, setName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
@@ -18,7 +18,7 @@ const AddAddress = (props) => {
   const navigate = useNavigate();
 
   const handleSaveAddress=()=>{
-    setAddress({name:name ,
+    getdelAddress({name:name ,
     ContactNo: contactNumber,
     addType: "Home",
     address: street + landMark,
@@ -26,7 +26,6 @@ const AddAddress = (props) => {
     city: city,
     zipcode: zipcode});
 
-    console.log(address)
     navigate("/OrderDtls")
   }
 
@@ -110,7 +109,7 @@ const AddAddress = (props) => {
                   fullWidth
                   size="small"
                   value={zipcode}
-                  onChange={(e) => setzipcode(e.target.value)}
+                  onChange={(e) => {setzipcode(e.target.value)}}
                 />
 
                 <Button

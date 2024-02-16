@@ -1,5 +1,5 @@
 import {
-    Alert,
+  Alert,
   Box,
   Button,
   Snackbar,
@@ -14,47 +14,99 @@ import { ProdContext } from "../../common/ProductContext";
 import { useNavigate } from "react-router-dom";
 
 const OrderDtls = () => {
-  const { productItem } = useContext(ProdContext);
+  const { orderdDtl,delAddress } = useContext(ProdContext);
   const navigate = useNavigate();
-  const steps = ["Item", "Select Address", "Confirm Order"];
-  const handleplaceOrder = () => {  
-    handleClick();      
+  const steps = ["Items", "Select Address", "Confirm Order"];
+  console.log(delAddress);
+  const handleplaceOrder = () => {
+    handleClick();
   };
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
-    setOpen(true);   
+    setOpen(true);
   };
 
   const handleClose = (event) => {
     setOpen(false);
-    setTimeout(navigate("/"),"200000"); 
+    setTimeout(navigate("/"), "200000");
   };
 
   return (
-    <Box sx={{ width: "90%", margin: "auto", marginTop: 5 }}>
-      <Stepper activeStep={2} alternativeLabel>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      <Grid2
-        container
-        direction="row"
-        alignItems="center"
-        columns={{ xs: 4, sm: 8, md: 12 }}
+    <>
+      <Box
+        sx={{
+          width: "63.5%",
+          margin: "auto",
+          marginTop: 5,
+          border: 2,
+          borderColor: "#edeff6",
+          padding: 2,
+        }}
       >
-        <Grid2 xs={6}>
-          <img className="imgProductDtl" src={productItem.imgUrl}></img>
+        <Stepper activeStep={2} alternativeLabel>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
+      <Box sx={{ width: "65%", margin: "auto", marginTop: 2 }}>
+        <Grid2 container spacing={2}>
+          <Grid2 xs={6} md={8} sx={{ border: 2, borderColor: "#edeff6" }}>
+            <Typography variant="h5">
+              <b>{orderdDtl.prodName}</b>
+            </Typography>
+            <Typography variant="caption">
+              Quantity: <b>{orderdDtl.qty}</b>
+            </Typography>
+            <br />
+            <Typography variant="caption">
+              Category:{" "}
+              <b style={{ textTransform: "uppercase" }}>
+                {orderdDtl.category}
+              </b>
+            </Typography>
+            <br />
+            <br />
+            <Typography variant="caption">{orderdDtl.desc}</Typography>
+            <br />
+
+            <Typography variant="h6" sx={{ mt: 5, color: "red" }}>
+              Total Price: {orderdDtl.price}
+            </Typography>
+          </Grid2>
+
+          <Grid2 xs={6} md={4} sx={{ border: 2, borderColor: "#edeff6" }}>
+            <Typography variant="h5">
+              <b>Address Details :</b>
+            </Typography>
+            <Typography variant="caption">
+              {delAddress.address} {delAddress.addType}
+            </Typography>
+            <br />
+            <Typography variant="caption">
+              Contact Number:<b style={{ textTransform: "uppercase" }}>
+                {delAddress.ContactNo}
+              </b>
+            </Typography><br />
+            <Typography variant="caption">
+              {delAddress.city}, {delAddress.State}
+            </Typography><br />
+            <Typography variant="caption">
+              {delAddress.zipcode}
+            </Typography>
+          </Grid2>
         </Grid2>
-        <Grid2 xs={6}>
-          <Typography variant="h5">{productItem.prodName}</Typography>
-          <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
-            {productItem.catagory}
-          </Typography>
-          <Typography variant="h6">{productItem.Description}</Typography>
+        <div
+          style={{
+            width: "100%",
+            margin: "auto",
+            marginTop: 50,
+            textAlign: "center",
+          }}
+        >
           <Button
             variant="contained"
             width="50"
@@ -63,21 +115,21 @@ const OrderDtls = () => {
           >
             PLACE ORDER
           </Button>
-        </Grid2>
-      </Grid2>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: '100%' }}
-          vertical= 'top'
-          horizontal= 'right'
-        >
-          Order is a Successfully Placed!
-        </Alert>
-      </Snackbar>
-    </Box>
+        </div>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            variant="filled"
+            sx={{ width: "100%" }}
+            vertical="top"
+            horizontal="right"
+          >
+            Order Placed Successfully !
+          </Alert>
+        </Snackbar>
+      </Box>
+    </>
   );
 };
 
